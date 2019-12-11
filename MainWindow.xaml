@@ -1,0 +1,28 @@
+﻿<Window x:Class="Project_Mathtasic_Voyage.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Mathtasic_Voyage"
+        mc:Ignorable="d"
+        Title="Mathtasic Voyage" Height="475" Width="725" ResizeMode="NoResize" FontFamily="Consolas">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <TextBox x:Name="TxtInputAnswer" HorizontalAlignment="Left" Height="18" Margin="210,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" TextChanged="TxtInputAnswer_TextChanged"/>
+        <ListBox x:Name="LsbMathProblems" HorizontalAlignment="Left" Height="240" Margin="40,80,0,0" VerticalAlignment="Top" Width="160"/>
+        <ListBox x:Name="LsbCorrectProblems" HorizontalAlignment="Left" Height="240" Margin="280,80,0,0" VerticalAlignment="Top" Width="160"/>
+        <ListBox x:Name="LsbIncorrectProblems" HorizontalAlignment="Left" Height="240" Margin="520,80,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="LblAswer" Content="Answer" HorizontalAlignment="Left" Margin="40,320,0,0" VerticalAlignment="Top" Height="26"/>
+        <TextBox x:Name="TxtDisplayProblem" HorizontalAlignment="Left" Height="23" Margin="10,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" IsEnabled="False" BorderBrush="White" TextAlignment="Right"/>
+        <Label x:Name="LblMathProblems" Content="Math Problems" HorizontalAlignment="Left" Margin="40,54,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblCorrect" Content="Correct" HorizontalAlignment="Left" Margin="280,54,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblIncorrect" Content="Incorrect" HorizontalAlignment="Left" Margin="520,54,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnSubmit" Content="Submit" OverridesDefaultStyle="False" Focusable="False" HorizontalAlignment="Left" Margin="60,385,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="BtnSubmit_Click" FontSize="14" RenderTransformOrigin="0.5,0.5" Cursor="Hand" BorderBrush="Black" Background="White"/>
+        <TextBox x:Name="TxtFinalScore" HorizontalAlignment="Left" Height="84" Margin="440,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" BorderBrush="White" IsEnabled="False" FontSize="72" FontFamily="Consolas" SpellCheck.IsEnabled="True" TextAlignment="Right"/>
+        <TextBox x:Name="TxtErrorBox" HorizontalAlignment="Left" Height="84" Margin="280,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderBrush="White" IsEnabled="False" FontSize="16" FontWeight="Bold"/>
+
+    </Grid>
+
+</Window>
