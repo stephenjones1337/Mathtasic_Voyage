@@ -19,9 +19,10 @@
         <Label x:Name="LblMathProblems" Content="Math Problems" HorizontalAlignment="Left" Margin="40,54,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblCorrect" Content="Correct" HorizontalAlignment="Left" Margin="280,54,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblIncorrect" Content="Incorrect" HorizontalAlignment="Left" Margin="520,54,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnSubmit" Content="Submit" OverridesDefaultStyle="False" Focusable="False" HorizontalAlignment="Left" Margin="60,385,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="BtnSubmit_Click" FontSize="14" RenderTransformOrigin="0.5,0.5" Cursor="Hand" BorderBrush="Black" Background="White"/>
+        <Button x:Name="BtnSubmit" Content="Submit" OverridesDefaultStyle="False" Focusable="False" HorizontalAlignment="Left" Margin="40,390,0,0" VerticalAlignment="Top" Width="110" Height="40" Click="BtnSubmit_Click" FontSize="14" RenderTransformOrigin="0.5,0.5" Cursor="Hand" BorderBrush="Black" Background="White"/>
         <TextBox x:Name="TxtFinalScore" HorizontalAlignment="Left" Height="84" Margin="440,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" BorderBrush="White" IsEnabled="False" FontSize="72" FontFamily="Consolas" SpellCheck.IsEnabled="True" TextAlignment="Right"/>
         <TextBox x:Name="TxtErrorBox" HorizontalAlignment="Left" Height="84" Margin="280,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderBrush="White" IsEnabled="False" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="BtnQueue" Content="Queue" OverridesDefaultStyle="False" Focusable="False" HorizontalAlignment="Left" Margin="160,390,0,0" VerticalAlignment="Top" Width="110" Height="40" Click="BtnQueue_Click" FontSize="14" RenderTransformOrigin="0.5,0.5" Cursor="Hand" BorderBrush="Black" Background="White"/>
 
     </Grid>
 

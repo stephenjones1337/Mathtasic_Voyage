@@ -14,45 +14,63 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Project_Mathtasic_Voyage {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        //global queue
-        Queue<MathProblem> questionQueue = new Queue<MathProblem>();
-
         public MainWindow() {
             InitializeComponent();
-            QueueProblems();
         }
+        #region GLOBALS
+        Queue<MathProblem> questionQueue = new Queue<MathProblem>();
+        #endregion
+        #region BUTTON EVENTS
         private void BtnSubmit_Click(object sender, RoutedEventArgs e) {
             CalculateAnswer();
         }
-        #region Collecting data
+
+        private void BtnQueue_Click(object sender, RoutedEventArgs e) {
+            QueueProblems();
+        }
+        #endregion
+        #region GET/GIVE DATA
         string[] ReadFile() {
-            return File.ReadAllLines(@"C:\Users\MCA\source\repos\Project Mathtasic Voyage\Test Questions.txt");            
+            OpenFileDialog myFile = new OpenFileDialog {
+                Filter = "Text files (*.txt)|*.txt|Docx files (*.docx)|*.docx;|All files (*.*)|*.*"
+            };
+
+            if (myFile.ShowDialog() == true) {
+                return File.ReadAllLines(myFile.FileName); 
+
+            }
+
+            return null;
         }
         void QueueProblems() {
             //reading file info
+            
             string[] problems = ReadFile();
 
-            foreach (string problem in problems) {
-                if (IsMathProblem(RemoveExcessSpace(problem))) {
-                    questionQueue.Enqueue(new MathProblem(problem));
-                    LsbMathProblems.Items.Add(RemoveExcessSpace(problem));
+            if (problems != null) {
+                foreach (string problem in problems) {
+                    if (IsMathProblem(RemoveExcessSpace(problem))) {
+                        questionQueue.Enqueue(new MathProblem(problem));
+                        LsbMathProblems.Items.Add(RemoveExcessSpace(problem));
+                    }
                 }
-            }
-            ShowCurrentProblem();
+                ShowCurrentProblem();
+            }//end if
         }
         #endregion
-        #region Events
+        #region TEXTBOX MANIPULATORS
         private void TxtInputAnswer_TextChanged(object sender, TextChangedEventArgs e) {
             TxtInputAnswer.Background = Brushes.White;
         }
         #endregion
-        #region Button: MathProblem
+        #region BTNSUBMIT ONCLICK
         private void ShowCurrentProblem() {
             if (LsbMathProblems.Items.Count != 0) {
                 //convert problem at top of the queue to string and print to txt box
@@ -65,12 +83,7 @@ namespace Project_Mathtasic_Voyage {
                 SortToList();
                 //if there are no more questions, post final score, clear/hide all inputs and lock button
                 if(questionQueue.Size == 0) {
-                    TxtFinalScore.Text = CalculateScore();
-                    TxtInputAnswer.IsEnabled = false;
-                    TxtInputAnswer.BorderBrush = Brushes.White;
-                    TxtDisplayProblem.Clear();
-                    LblAswer.Visibility = Visibility.Hidden;
-                    BtnSubmit.IsEnabled = false;
+                    HideAll();
                 }
             }
             
@@ -119,7 +132,7 @@ namespace Project_Mathtasic_Voyage {
             return $"{(int)score}%";
         }
         #endregion
-        #region String Manipulation
+        #region STRING MANIPULATION
         string RemoveExcessSpace(string word) {
             char lastLetter = '\0';
             string result = "";
@@ -148,7 +161,7 @@ namespace Project_Mathtasic_Voyage {
             return true;
         }
         #endregion
-        #region Calculating Correct Answer
+        #region CALCULATING CORRECT ANSWER
         bool IsOperator(char symbol) {
             string operators = "+-*/%";
             if (operators.Contains(symbol) && symbol != '(' && symbol != ')') return true;
@@ -286,6 +299,17 @@ namespace Project_Mathtasic_Voyage {
         #endregion
 
         #endregion
-        
+        #region HIDE/BLOCK ELEMENTS
+        private void HideAll() {
+            TxtDisplayProblem.Clear();
+            TxtFinalScore.Text         = CalculateScore();
+            TxtInputAnswer.BorderBrush = Brushes.White;
+            LblAswer.Visibility        = Visibility.Hidden;
+            TxtInputAnswer.IsEnabled   = false;
+            BtnSubmit.IsEnabled        = false;
+            BtnQueue.IsEnabled         = false;
+        }
+        #endregion
+
     }
 }
